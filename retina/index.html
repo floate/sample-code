@@ -8,15 +8,15 @@
 
 	<link rel='stylesheet' href='../all.css' type='text/css' media='all' />
 	<!--[if !(IEMobile)&(gte IE 6)&(lte IE 8)]>
-	<link rel='stylesheet' id='soup-desktop-ie-css'  href='../desktop.css' type='text/css' media='screen, projector' />
+	<link rel='stylesheet' href='../desktop.css' type='text/css' media='screen, projector' />
 	<![endif]-->
-	<link rel='stylesheet' id='soup-desktop-css'  href='../desktop.css' type='text/css' media='only screen and (min-width: 760px)' />
+	<link rel='stylesheet' href='../desktop.css' type='text/css' media='only screen and (min-width: 760px)' />
 
 
 	
 	<style>
 	.background {
-		background: url('img-x1.jpg') no-repeat scroll top left;
+		background: url(img-x1.jpg) no-repeat;
 		width: 600px;
 		height: 400px;
 /*		border: 1px solid #f00;*/
@@ -27,7 +27,7 @@
 	 only screen and (-moz-min-device-pixel-ratio: 2), 
 	 only screen and (min-device-pixel-ratio: 2) {
 		.background {
-			background-image: url('img-x2.jpg');
+			background-image: url(img-x2.jpg);
 			background-size:600px 400px;
 /*			border-color: #0f0;*/
 		}
@@ -79,26 +79,26 @@
 
 
 
-	<pre><code>
-	&lt;style&gt;
-	.background {
-	  background: url('img-x1.jpg') no-repeat scroll top left;
-	  width: 600px;
-	  height: 400px;
-	}
+<pre><code>
+&lt;style&gt;
+.background {
+  background: url(img-x1.jpg) no-repeat;
+  width: 600px;
+  height: 400px;
+}
 
-	@media
-	  only screen and (-webkit-min-device-pixel-ratio: 2), 
-	  only screen and (-moz-min-device-pixel-ratio: 2), 
-	  only screen and (min-device-pixel-ratio: 2) {
-	  .background {
-	    background-image: url('img-x2.jpg');
-	    background-size:600px 400px;
-	  }
-	}
-	&lt;/style&gt;
-	&lt;div class="background"&gt;&lt;/div&gt;
-	</code></pre>
+@media
+  only screen and (-webkit-min-device-pixel-ratio: 2), 
+  only screen and (-moz-min-device-pixel-ratio: 2), 
+  only screen and (min-device-pixel-ratio: 2) {
+  .background {
+    background-image: url(img-x2.jpg);
+    background-size:600px 400px;
+  }
+}
+&lt;/style&gt;
+&lt;div class="background"&gt;&lt;/div&gt;
+</code></pre>
 
 
 
