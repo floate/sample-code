@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="no-js no-jswin" dir="ltr" lang="en-US">
+<head>
+	<meta charset=UTF-8>
+	<script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+	<title>  Hi-res images for retina devices - Floate Sandbox</title>
+	<meta name="description" content="A test of using hi-res images for Retina displays"/>
+
+	<link rel='stylesheet' href='../all.css' type='text/css' media='all' />
+	<!--[if !(IEMobile)&(gte IE 6)&(lte IE 8)]>
+	<link rel='stylesheet' id='soup-desktop-ie-css'  href='../desktop.css' type='text/css' media='screen, projector' />
+	<![endif]-->
+	<link rel='stylesheet' id='soup-desktop-css'  href='../desktop.css' type='text/css' media='only screen and (min-width: 760px)' />
+
+
+	
+	<style>
+	.background {
+		background: url('img-x1.jpg') no-repeat scroll top left;
+		width: 600px;
+		height: 400px;
+/*		border: 1px solid #f00;*/
+	}
+	
+	@media
+	 only screen and (-webkit-min-device-pixel-ratio: 2), 
+	 only screen and (-moz-min-device-pixel-ratio: 2), 
+	 only screen and (min-device-pixel-ratio: 2) {
+		.background {
+			background-image: url('img-x2.jpg');
+			background-size:600px 400px;
+/*			border-color: #0f0;*/
+		}
+	}
+	</style>
+	
+	<script>
+	
+	fdp_retina = function(lowres, hires, ratioswitch) {
+		if ( ( hires == null ) && ( lowres == null ) ) {
+			return;
+		}
+		if ( ( hires == null ) || ( typeof devicePixelRatio == 'undefined' ) ) {
+			return lowres;
+		}
+		if (isNaN(ratioswitch)) {
+			ratioswitch = 2;
+		}
+		var dpr = devicePixelRatio;
+		if (dpr >= ratioswitch) {
+			return hires;
+		}
+		return lowres;
+	}
+	
+	</script>
+	
+</head>
+<body><div class="notfooter">
+
+	<!--[if lte IE 8]> <div id="pageWrap" class="lte8"> <![endif]-->
+	<!--[if gt IE 8]><!--><div id="pageWrap"><!--<![endif]-->
+	<div id="header" role="banner" class="header">
+
+		<div id="siteDetails">
+		<p id="siteName"><a href="http://floate.com.au" title="Floate Design Partners">
+			<img src="http://floate.com.au/wp-content/themes/floate/assets/child/i/logo.png" width="79" height="17" alt="" class="desktop" />
+			<img src="http://floate.com.au/wp-content/themes/floate/assets/child/i/logo-mobile.png" width="153" height="33" alt="" class="mobile" />
+		</a></p>
+		<!-- p id="siteDesc"><span></span>Just another WordPress site</p -->
+		</div>
+
+	</div>
+
+
+	<h1>Background Image</h1>
+	<div class="background"></div>
+
+
+
+
+	<pre><code>
+	&lt;style&gt;
+	.background {
+	  background: url('img-x1.jpg') no-repeat scroll top left;
+	  width: 600px;
+	  height: 400px;
+	}
+
+	@media
+	  only screen and (-webkit-min-device-pixel-ratio: 2), 
+	  only screen and (-moz-min-device-pixel-ratio: 2), 
+	  only screen and (min-device-pixel-ratio: 2) {
+	  .background {
+	    background-image: url('img-x2.jpg');
+	    background-size:600px 400px;
+	  }
+	}
+	&lt;/style&gt;
+	&lt;div class="background"&gt;&lt;/div&gt;
+	</code></pre>
+
+
+
+
+<h1>Image Tag</h1>
+<noscript>
+<img src='img-x1.jpg' width=600 height=400 />
+</noscript>
+<script>
+document.write("<img src=\"" + fdp_retina('img-x1.jpg', 'img-x2.jpg', 2) + "\" class=\"retina retina-js\" width=600 height=400 />");
+</script>
+
+
+<pre><code>
+&lt;noscript&gt;
+&lt;img src='img-x1.jpg' width=600 height=400 /&gt;
+&lt;/noscript&gt;
+&lt;script&gt;
+document.write("&lt;img src=\"" + fdp_retina('img-x1.jpg', 'img-x2.jpg', 2) + "\" class=\"retina retina-js\" width=600 height=400 /&gt;");
+&lt;/script&gt;
+</code></pre>
+
+
+
+<h1>Image Tag - late loader</h1>
+<span class="retina-holding" data-width="600" data-height="400" data-lowres="img-x1.jpg" data-hires="img-x2.jpg" data-hireszoom="2"><noscript><img src='img-x1.jpg' width=600 height=400 /></noscript></span>
+
+
+<pre><code>
+&lt;span class="retina-holding" data-width="600" data-height="400" data-lowres="img-x1.jpg" data-hires="img-x2.jpg" data-hireszoom="2"&gt;&lt;noscript&gt;&lt;img src='img-x1.jpg' width=600 height=400 /&gt;&lt;/noscript&gt;&lt;/span&gt;
+</code></pre>
+
+
+
+
+</div> 
+<!-- //#pageWrap -->
+</div>
+
+<script>
+
+
+(function(){
+	/**
+	 * This polyfill is originally a part of: http://github.com/murger/Qj/
+	 * MIT license (http://opensource.org/licenses/mit-license.php)
+	 * usage: getElementsByClassName.call(document, 'awesome')
+
+	 * sourced from: https://gist.github.com/2158503 -- I'd be more selective for none-example
+	 */
+
+	var getElementsByClassName = (function () {
+		if (typeof document.getElementsByClassName === 'function') {
+			return document.getElementsByClassName;
+		}
+
+		return function (cssClass) {
+			var nodes = (this === document)
+					? document.body.children
+					: this.children,
+				push = Array.prototype.push,
+				result = [],
+				i = 0, j = 0,
+				n, c,
+
+				elHasClass = function (node) {
+					return !!~(' ' + node.className + ' ').indexOf(' ' + cssClass + ' ');
+				},
+
+				hasChildren = function (node) {
+					return (node.children && node.children.length);
+				},
+
+				filterNodeByClass = function (node) {
+					if (elHasClass(node)) {
+						push.call(result, node);
+					}
+				};
+
+			while (n = nodes[i++]) {
+				filterNodeByClass(n);
+
+				if (hasChildren(n)) {
+					j = 0;
+
+					while (c = n.children[j++]) {
+						if (hasChildren(c)) {
+							push.call(nodes, c);
+						} else {
+							filterNodeByClass(c);
+						}
+					}
+				}
+			}
+
+			return result;
+		};
+	})();
+
+	var holdingImgs = getElementsByClassName.call(document, 'retina-holding'),
+		hilen = holdingImgs.length;
+
+	for (var i=0; i<hilen; i++) {
+
+		var hires,
+			lowres,
+			width,
+			height,
+			ratioswitch,
+			image;
+
+
+		if (typeof holdingImgs[i].dataset != 'undefined') {
+			if ((holdingImgs[i].dataset.lowres) && (holdingImgs[i].dataset.hires)) {
+				hires = holdingImgs[i].dataset.hires;
+				lowres = holdingImgs[i].dataset.lowres;
+				width;
+				height;
+				ratioswitch = holdingImgs[i].dataset.hireszoom * 1;
+			
+				if (holdingImgs[i].dataset.width) {
+					width = holdingImgs[i].dataset.width * 1;
+				}
+				if (holdingImgs[i].dataset.height) {
+					height = holdingImgs[i].dataset.height * 1;
+				}
+			
+			}
+		}
+		else {
+			hires = holdingImgs[i].attributes.getNamedItem('data-hires').nodeValue;
+			lowres = holdingImgs[i].attributes.getNamedItem('data-lowres').nodeValue;
+			width = holdingImgs[i].attributes.getNamedItem('data-width').nodeValue;
+			height = holdingImgs[i].attributes.getNamedItem('data-height').nodeValue;
+			ratioswitch = holdingImgs[i].attributes.getNamedItem('data-hireszoom').nodeValue * 1;
+		}
+	
+		image = document.createElement('img');
+		image.src = fdp_retina(lowres, hires, ratioswitch);
+		if (width > 0) {
+			image.width = width;
+		}
+		if (height > 0) {
+			image.height = height;
+		}
+		holdingImgs[i].appendChild(image);
+
+	
+	}
+})();
+
+(function(a,d){var b=a.addEventListener,c=a.attachEvent,g="load",h="on"+g;function e(){d.className=d.className.replace(/\bno-jswin\b/,"jswin");if(b){a.removeEventListener(g,e,false)}else if(c){a.detachEvent(h,e)}}if(b){b(g,e,false)}else if(c){c(h,e)}})(window,document.documentElement)
+</script>
+</body>
+</html>
